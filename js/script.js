@@ -2721,3 +2721,37 @@ console.log("script.js loaded");
     "offset": 0
   }
 }
+let data = fetch("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3J2NDJjZmNhOWVocjR2YThhcW00OGtqNWYwODJxbXllZDg5MGRjZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/sP0SLcBdcPYqKKnfaY/giphy.gif");
+console.log(data);
+
+async function getCatGif() {
+  const response = await fetch("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3J2NDJjZmNhOWVocjR2YThhcW00OGtqNWYwODJxbXllZDg5MGRjZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/sP0SLcBdcPYqKKnfaY/giphy.gif");
+  const data = await response.json();
+  const fact = data.facts[0];
+  
+  const output = document.getElementById("cat-gif-output"); 
+  output.textContent = fact;
+}
+
+getCatGif()
+
+const button = document.getElementById("fetch-cat-gift-btn"); 
+
+button.addEventListener("click", function () { 
+  getCatGif(); 
+});
+
+function getCatGif() {
+  fetch("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3J2NDJjZmNhOWVocjR2YThhcW00OGtqNWYwODJxbXllZDg5MGRjZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/sP0SLcBdcPYqKKnfaY/giphy.gif")
+    .then(response => response.json())  // Covert the response
+    .then(data => { 
+      // Update the DOM with the cat gif
+      const fact = data.facts[0]; 
+      const output = document.getElementById("fact-output"); 
+      output.textContent = fact; 
+    }) 
+    .catch(error => { 
+      // Message to print if there was an error
+      console.error("Error fetching cat gif:", error); 
+    });
+}
